@@ -2,3 +2,4 @@ pandas
 google-cloud-bigquery
 facebook-business
 pyarrow
+flask
