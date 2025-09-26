@@ -1,15 +1,18 @@
-# Use official lightweight Python image
+# Use official Python slim image
 FROM python:3.12-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Copy dependencies and install
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy script
-COPY main.py .
+# Copy project code
+COPY . .
 
-# Run script
+# Set environment variable for Cloud Run
+ENV PORT 8080
+
+# Start the Flask server
 CMD ["python", "main.py"]
