@@ -13,6 +13,7 @@ COPY . .
 
 # Set environment variable for Cloud Run
 ENV PORT 8080
+EXPOSE 8080
 
 # Start the Flask server
 CMD ["python", "main.py"]
