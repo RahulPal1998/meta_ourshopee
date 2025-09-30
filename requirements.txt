@@ -1,5 +1,7 @@
 pandas
 google-cloud-bigquery
+flask==3.0.0
+gunicorn==21.2.0
 facebook-business
 pyarrow
 flask
