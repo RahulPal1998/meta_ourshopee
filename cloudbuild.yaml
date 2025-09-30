@@ -1,0 +1,20 @@
+# filename: cloudbuild.yaml
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build and Push Image'
+  args: [
+    'build', 
+    '--file', 'Dockerfile', 
+    '-t', 
+    # Artifact Registry Path
+    'asia-south2-docker.pkg.dev/ourshopee-459907/meta-etl/meta-etl-job:latest', 
+    '.'
+  ]
+
+images:
+# Artifact Registry Push Target
+- 'asia-south2-docker.pkg.dev/ourshopee-459907/meta-etl/meta-etl-job:latest'
+
+options:
+  # Fix for the custom service account logging requirement
+  logging: CLOUD_LOGGING_ONLY
