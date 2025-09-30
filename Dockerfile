@@ -9,7 +9,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
-COPY main.py . # Assuming your updated script is named main.py
+COPY main.py . 
+# Assuming your updated script is named main.py
 
 # Command to run your script when the container starts
 CMD ["python", "main.py"]
