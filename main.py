@@ -284,7 +284,8 @@ def log_audit_entry(client, run_timestamp, ad_account_id, table_name, rows_proce
     ]
 
     try:
-        log_df.to_gbq(
+        pandas_gbq.to_gbq(
+           dataframe= log_df,
             destination_table=full_table_id,
             project_id=BQ_CONFIG['project_id'],
             if_exists='append',
