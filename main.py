@@ -31,7 +31,7 @@ except ImportError:
 META_CONFIG = {
     'app_id': '1156038156454409',
     'app_secret': '3f144617fbd9cffec3254e63110000c1',
-    'access_token': 'EAAQbaRupigkBPjzZAaRFgrQ7hBVb3xbmQyL2ElNf1cELIwr8sNdxp5ZBdHOEP9ZBIXOd965hjHkRsDx7prXv5g6bvuK7mkluzmCaGZCG8tWRS1RewGoa4QoHnVDLBBZBY4hespbk83oZB5GKeTVEdiZCZAXTWzvrI9lD74jQL3LCBAdrEOiqDELiyLoddK9E19ZCZC0dsQFwZAnAz5MPccxI9ZCjQIaxtokEBddoJfIonH9TbAmnWAZDZD',
+    'access_token': 'EAAQbaRupigkBPiT09qR3kj1NOpTObuTeEAUqcz1zyfCZCjrRZBJPCYLeyRJqkdEtqtK9Lhtv5T8chFhuMUioZCbiaNkDHpcrOyQxhsaakzqG4FNZCtcynFykqlwcYHdYy50nOMZC60ZAUjNVWC3YPoPP06WbodK9S3vIEBsZCnGJjLHVu7nILkZCVFTx6cKPzaGym27J1FDlZBbCxXOsp2CYubeDcFLuBkm2cZCXQtBuZAuQ5qZCCMD9',
     'ad_account_ids': [
         'act_1401816280975925',
         'act_1815733095432159',
@@ -46,19 +46,20 @@ META_CONFIG = {
 BQ_CONFIG = {
     'project_id': 'ourshopee-459907',
     'dataset_id': 'meta_ads_data',
-    'service_account_path': 'ourshopee.json', 
+#    'service_account_path': 'ourshopee.json', 
 }
 
 # --- Initialize Clients (Kept the same) ---
+
 def initialize_bigquery_client():
-    """Initializes the BigQuery client using the Service Account JSON key path."""
+    """Initializes the BigQuery client using Application Default Credentials (ADC)."""
     
-    # Authenticate using the service account key
-    client = bigquery.Client.from_service_account_json(
-        BQ_CONFIG['service_account_path'],
+    # Initialize without arguments. The client library automatically uses
+    # the service account assigned to the Cloud Run Job (ADC).
+    client = bigquery.Client(
         project=BQ_CONFIG['project_id']
     )
-    print("✓ BigQuery client initialized using Service Account Key")
+    print("✓ BigQuery client initialized using Application Default Credentials")
     return client
 
 def initialize_meta_api():
