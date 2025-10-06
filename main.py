@@ -31,7 +31,7 @@ except ImportError:
 META_CONFIG = {
     'app_id': '1156038156454409',
     'app_secret': '3f144617fbd9cffec3254e63110000c1',
-    'access_token': 'EAAQbaRupigkBPiT09qR3kj1NOpTObuTeEAUqcz1zyfCZCjrRZBJPCYLeyRJqkdEtqtK9Lhtv5T8chFhuMUioZCbiaNkDHpcrOyQxhsaakzqG4FNZCtcynFykqlwcYHdYy50nOMZC60ZAUjNVWC3YPoPP06WbodK9S3vIEBsZCnGJjLHVu7nILkZCVFTx6cKPzaGym27J1FDlZBbCxXOsp2CYubeDcFLuBkm2cZCXQtBuZAuQ5qZCCMD9',
+    'access_token': 'EAAQbaRupigkBPqd7Lyvw2kWhHG0znI2WFwZC7Km5ZCNcwWJMvICMGKKQ0QVt2GqS0dSsoePRHnxC1k5ybmlkHXgROWMCHMcAGaizmsZCZBJNFckSaZBzyl4nufnmIi2HcaPYVL85PqxBRYNZA4Y6EpIdxmKmx0RX3HzewhjZBJDFy12rYfw6qZCthFY5FxsskIZBuNgZDZD',
     'ad_account_ids': [
         'act_1401816280975925',
         'act_1815733095432159',
