@@ -181,7 +181,40 @@ def fetch_meta_data(ad_account_id, last_run_time_insight):
     
     # Ads
     # ad_fields = ['id', 'name', 'adset_id', 'campaign_id', 'status', 'creative']
-    ad_fields = ['account_id', 'ad_active_time', 'ad_review_feedback', 'ad_schedule_end_time', 'ad_schedule_start_time', 'adlabels', 'adset', 'adset_id', 'bid_amount', 'bid_info', 'bid_type', 'campaign', 'campaign_id', 'configured_status', 'conversion_domain', 'conversion_specs', 'created_time', 'creative', 'creative_asset_groups_spec', 'demolink_hash', 'display_sequence', 'effective_status', 'engagement_audience', 'failed_delivery_checks', 'id', 'issues_info', 'last_updated_by_app_id', 'name', 'placement', 'preview_shareable_link', 'priority', 'recommendations', 'source_ad', 'source_ad_id', 'status', 'targeting', 'tracking_and_conversion_with_defaults', 'tracking_specs', 'updated_time', 'adset_spec', 'audience_id', 'date_format', 'draft_adgroup_id', 'execution_options', 'include_demolink_hashes', 'filename']
+    # ad_fields = ['account_id', 'ad_active_time', 'ad_review_feedback', 'ad_schedule_end_time', 'ad_schedule_start_time', 'adlabels', 'adset', 'adset_id', 'bid_amount', 'bid_info', 'bid_type', 'campaign', 'campaign_id', 'configured_status', 'conversion_domain', 'conversion_specs', 'created_time', 'creative', 'creative_asset_groups_spec', 'demolink_hash', 'display_sequence', 'effective_status', 'engagement_audience', 'failed_delivery_checks', 'id', 'issues_info', 'last_updated_by_app_id', 'name', 'placement', 'preview_shareable_link', 'priority', 'recommendations', 'source_ad', 'source_ad_id', 'status', 'targeting', 'tracking_and_conversion_with_defaults', 'tracking_specs', 'updated_time', 'adset_spec', 'audience_id', 'date_format', 'draft_adgroup_id', 'execution_options', 'include_demolink_hashes', 'filename']
+    ad_fields = [
+    'id',                       # Core Identifier
+    'name',                     # Ad Name
+    'campaign_id',              # Parent Campaign Link
+    'adset_id',                 # Parent Ad Set Link
+    'account_id',               # Parent Account Link
+    'status',                   # User-set status (PAUSED, ACTIVE)
+    'effective_status',         # System-determined status (PENDING_REVIEW, ACTIVE)
+    'configured_status',        # The latest status set by the user or system
+    'created_time',             # Creation timestamp
+    'updated_time',             # Last update timestamp
+    
+    'creative',                 # CRITICAL: Link to the Ad Creative (nested)
+    'targeting',                # CRITICAL: Detailed audience targeting (nested)
+    'ad_review_feedback',       # CRITICAL: Feedback on rejections/approvals (nested)
+    'failed_delivery_checks',   # Reasons why the ad is not delivering (nested)
+    'issues_info',              # Details on problems with the ad (nested)
+
+    'bid_amount',               # The amount bid
+    'bid_type',                 # The type of bidding strategy
+    'call_to_action_type',      # The button text (e.g., SHOP_NOW)
+    'conversion_domain',        # Landing page domain for link validation
+
+    'adlabels',                 # User-defined labels (nested)
+    'placement',                # Placement setting (nested)
+    'recommendations',          # Improvement suggestions (nested)
+    'preview_shareable_link',   # Link to view the ad (for auditing)
+
+    'ad_active_time',           # Time ad was active (seconds)
+    'ad_schedule_start_time',   # Start time for Ad Scheduling
+    'ad_schedule_end_time',     # End time for Ad Scheduling
+    'source_ad_id'              # Used if this ad was copied from another
+    ]
     data['ads'] = fetch_paged_data_safely(ad_account.get_ads, ad_fields, 'Ads')
 
 
