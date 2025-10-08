@@ -158,7 +158,7 @@ def fetch_paged_data_safely(fetch_method, fields, entity_name):
     return all_data
 
 # --- Fetch Meta Data (MODIFIED: Implements Paging for Structure) ---
-def fetch_meta_data(ad_account_id, last_run_time_insight):
+def fetch_meta_data(ad_account_id, last_run_time_insight,run_timestamp_dt):
     """
     Fetches structure and insights for a single ad_account_id, using safe paging 
     for structure data and date-based incremental fetching for insights.
@@ -187,10 +187,10 @@ def fetch_meta_data(ad_account_id, last_run_time_insight):
 
 
     # --- 2. Time Range for Incremental Insights (Logic is stable) ---
-    end_date_str = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d') 
+    end_date_str = (run_timestamp_dt - timedelta(days=1)).strftime('%Y-%m-%d') 
     
     if last_run_time_insight is None:
-        start_date_dt = (datetime.now() - timedelta(days=7))
+        start_date_dt = (run_timestamp_dt - timedelta(days=7))
     else:
         start_date_dt = last_run_time_insight.date() + timedelta(days=1)
         
@@ -379,7 +379,7 @@ def main():
         # 3. Fetch Data
         try:
             # THIS CALL NOW USES THE NEW PAGED FETCH LOGIC
-            meta_data = fetch_meta_data(ad_account_id, last_run_time_insight)
+            meta_data = fetch_meta_data(ad_account_id, last_run_time_insight,run_timestamp_dt)
             meta_data_py = json.loads(json.dumps(meta_data))
         
         except Exception as e:
